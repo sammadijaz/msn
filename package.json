@@ -1,0 +1,43 @@
+{
+  "name": "msn-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Mad Sam Notation (MSN) — The most token-efficient structured data format for AI and modern applications",
+  "workspaces": [
+    "packages/*",
+    "playground",
+    "website"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint packages/*/src/**/*.ts",
+    "format": "prettier --write .",
+    "clean": "rimraf packages/*/dist"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "rimraf": "^5.0.5",
+    "typescript": "^5.3.3",
+    "vitest": "^1.2.0",
+    "prettier": "^3.2.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/madsam/msn"
+  },
+  "keywords": [
+    "msn",
+    "mad-sam-notation",
+    "data-format",
+    "json",
+    "parser",
+    "token-efficient",
+    "ai"
+  ]
+}

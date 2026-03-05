@@ -1,0 +1,97 @@
+{
+  "name": "msn-vscode",
+  "displayName": "MSN - Mad Sam Notation",
+  "description": "Language support for Mad Sam Notation (MSN) — syntax highlighting, validation, formatting, and more",
+  "version": "1.0.0",
+  "publisher": "msn-lang",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Formatters",
+    "Linters"
+  ],
+  "activationEvents": [
+    "onLanguage:msn"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "msn",
+        "aliases": [
+          "MSN",
+          "Mad Sam Notation"
+        ],
+        "extensions": [
+          ".msn"
+        ],
+        "configuration": "./language-configuration.json",
+        "icon": {
+          "light": "./icons/msn-icon.svg",
+          "dark": "./icons/msn-icon.svg"
+        }
+      }
+    ],
+    "grammars": [
+      {
+        "language": "msn",
+        "scopeName": "source.msn",
+        "path": "./syntaxes/msn.tmLanguage.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "msn.compile",
+        "title": "MSN: Compile to JSON"
+      },
+      {
+        "command": "msn.validate",
+        "title": "MSN: Validate File"
+      },
+      {
+        "command": "msn.format",
+        "title": "MSN: Format File"
+      }
+    ],
+    "configuration": {
+      "title": "MSN",
+      "properties": {
+        "msn.validate.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable/disable MSN validation"
+        },
+        "msn.format.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable/disable MSN formatting"
+        },
+        "msn.compile.indent": {
+          "type": "number",
+          "default": 2,
+          "description": "JSON output indent level"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "package": "vsce package",
+    "clean": "rimraf dist"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.3.3",
+    "rimraf": "^5.0.5",
+    "@vscode/vsce": "^2.22.0"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/madsam/msn",
+    "directory": "packages/vscode-extension"
+  }
+}

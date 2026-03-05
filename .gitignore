@@ -1,0 +1,15 @@
+node_modules
+dist
+.next
+out
+build
+coverage
+*.log
+*.tsbuildinfo
+.env
+.env.local
+.DS_Store
+Thumbs.db
+.vscode/settings.json
+*.vsix
+website

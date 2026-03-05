@@ -1,0 +1,4 @@
+# Simple example
+- name: hello
+- version: 1.0.0
+- active: true
