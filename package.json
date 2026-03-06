@@ -9,12 +9,12 @@
     "website"
   ],
   "scripts": {
-    "build": "npm run build --workspaces --if-present",
+    "build": "node scripts/build.mjs",
     "test": "vitest run",
     "test:watch": "vitest",
     "lint": "eslint packages/*/src/**/*.ts",
     "format": "prettier --write .",
-    "clean": "rimraf packages/*/dist"
+    "clean": "node scripts/clean.mjs"
   },
   "devDependencies": {
     "@types/node": "^20.11.0",

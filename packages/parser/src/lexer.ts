@@ -32,10 +32,10 @@ export class Lexer {
       // Count dashes
       const dashMatch = raw.match(/^(-+)\s/);
       if (!dashMatch) {
-        throw new LexerError(
-          `Invalid syntax: line must start with dashes followed by a space`,
-          lineNum,
-        );
+        const hint = raw.match(/^(-+)/)
+          ? `Missing space after dash prefix`
+          : `Expected line to start with dashes (e.g. "- key: value")`;
+        throw new LexerError(`${hint}, got: "${raw.trimEnd()}"`, lineNum);
       }
 
       const dashes = dashMatch[1];

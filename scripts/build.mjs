@@ -11,8 +11,8 @@ import path from "path";
 
 const packages = [
   "packages/parser",
-  "packages/validator",
   "packages/formatter",
+  "packages/validator",
   "packages/cli",
 ];
 
@@ -25,7 +25,7 @@ for (const pkg of packages) {
     continue;
   }
   console.log(`\n  Building ${pkg}...`);
-  execSync("npx tsc --build", { cwd: dir, stdio: "inherit" });
+  execSync("npx tsc -p tsconfig.json", { cwd: dir, stdio: "inherit" });
 }
 
 console.log("\n  All packages built successfully.");

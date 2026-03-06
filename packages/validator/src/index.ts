@@ -41,8 +41,9 @@ export function validate(source: string): ValidationError[] {
     const dashMatch = raw.match(/^(-+)(.*)/);
     if (!dashMatch) {
       errors.push({
-        message: "Line must start with one or more dashes (-)",
+        message: `Line must start with one or more dashes (-), got: "${trimmed.slice(0, 30)}${trimmed.length > 30 ? "..." : ""}"`,
         line: lineNum,
+        column: 1,
         severity: "error",
       });
       continue;
@@ -55,8 +56,9 @@ export function validate(source: string): ValidationError[] {
     // Must have space after dashes
     if (afterDashes.length > 0 && afterDashes[0] !== " ") {
       errors.push({
-        message: "Missing space after dash prefix",
+        message: `Missing space after dash prefix at column ${depth + 1}`,
         line: lineNum,
+        column: depth + 1,
         severity: "error",
       });
       continue;

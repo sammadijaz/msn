@@ -67,7 +67,7 @@ function getOption(args: string[], flag: string): string | undefined {
   return undefined;
 }
 
-async function main(): Promise<void> {
+export async function main(): Promise<void> {
   const args = process.argv.slice(2);
 
   if (args.length === 0 || args[0] === "help" || args[0] === "--help") {
