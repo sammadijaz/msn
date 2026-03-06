@@ -1,15 +1,9 @@
 /**
  * Standalone MSN compiler for the playground.
- * Self-contained so it works without importing @msn/parser.
+ * Self-contained so it works without importing @madsn/parser.
  */
 
-type JsonValue =
-  | string
-  | number
-  | boolean
-  | null
-  | JsonValue[]
-  | { [key: string]: JsonValue };
+type JsonValue = string | number | boolean | null | JsonValue[] | { [key: string]: JsonValue };
 
 function inferType(value: string): string | number | boolean | null {
   if (value === "") return "";
@@ -46,13 +40,7 @@ function stripInlineComment(content: string): string {
 }
 
 interface Token {
-  type:
-    | "kv"
-    | "container"
-    | "array-item"
-    | "array-object"
-    | "multiline"
-    | "skip";
+  type: "kv" | "container" | "array-item" | "array-object" | "multiline" | "skip";
   depth: number;
   key?: string;
   value?: string;
@@ -126,8 +114,7 @@ function buildAST(tokens: Token[]): ASTNode {
       i++;
       continue;
     }
-    while (stack.length > 1 && stack[stack.length - 1].depth >= t.depth)
-      stack.pop();
+    while (stack.length > 1 && stack[stack.length - 1].depth >= t.depth) stack.pop();
     const parent = stack[stack.length - 1].node;
     if (t.type === "kv") {
       parent.children.push({
@@ -199,9 +186,7 @@ function astToJson(node: ASTNode): JsonValue {
     node.type === "root" ||
     (node.type === "object" &&
       node.children.length > 0 &&
-      !node.children.some(
-        (c) => c.type === "array-item" || (c.type === "object" && !c.key),
-      ))
+      !node.children.some((c) => c.type === "array-item" || (c.type === "object" && !c.key)))
   ) {
     const obj: Record<string, JsonValue> = {};
     for (const c of node.children) {
@@ -214,17 +199,13 @@ function astToJson(node: ASTNode): JsonValue {
   if (
     node.type === "array" ||
     (node.type === "object" &&
-      node.children.some(
-        (c) => c.type === "array-item" || (c.type === "object" && !c.key),
-      ))
+      node.children.some((c) => c.type === "array-item" || (c.type === "object" && !c.key)))
   ) {
     const arr: JsonValue[] = [];
     for (const c of node.children) {
       if (c.type === "array-item")
         arr.push(
-          c.children.length > 0
-            ? astToJson({ ...c, type: "object" })
-            : (c.value as JsonValue),
+          c.children.length > 0 ? astToJson({ ...c, type: "object" }) : (c.value as JsonValue),
         );
       else if (c.type === "object" && !c.key) arr.push(astToJson(c));
       else arr.push(astToJson(c));
@@ -235,8 +216,7 @@ function astToJson(node: ASTNode): JsonValue {
   if (node.type === "object") {
     const obj: Record<string, JsonValue> = {};
     for (const c of node.children) {
-      if (c.key)
-        obj[c.key] = c.type === "value" ? (c.value as JsonValue) : astToJson(c);
+      if (c.key) obj[c.key] = c.type === "value" ? (c.value as JsonValue) : astToJson(c);
     }
     return obj;
   }

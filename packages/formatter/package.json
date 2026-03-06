@@ -1,5 +1,5 @@
 {
-  "name": "@msn/formatter",
+  "name": "@madsn/formatter",
   "version": "1.0.0",
   "description": "Auto-formatter for Mad Sam Notation (MSN) files",
   "main": "dist/index.js",

@@ -2,9 +2,9 @@
 
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
-import { compile, compileToString, Parser } from "@msn/parser";
-import { validate } from "@msn/validator";
-import { format } from "@msn/formatter";
+import { compile, compileToString, Parser } from "@madsn/parser";
+import { validate } from "@madsn/validator";
+import { format } from "@madsn/formatter";
 
 const HELP = `
 MSN — Mad Sam Notation CLI
@@ -45,9 +45,7 @@ async function readStdin(): Promise<string> {
 function readInput(args: string[]): string {
   const fileArg = args.find((a) => !a.startsWith("--"));
   if (!fileArg) {
-    console.error(
-      "Error: No input file specified. Use --stdin for stdin input.",
-    );
+    console.error("Error: No input file specified. Use --stdin for stdin input.");
     process.exit(1);
   }
   const filePath = resolve(fileArg);

@@ -5,13 +5,13 @@
 ### Parser Library
 
 ```bash
-npm install @msn/parser
+npm install @madsn/parser
 ```
 
 ### CLI Tool
 
 ```bash
-npm install -g @msn/cli
+npm install -g @madsn/cli
 ```
 
 ### VS Code Extension
@@ -54,7 +54,7 @@ Output:
 ### Using the Library
 
 ```typescript
-import { compile } from "@msn/parser";
+import { compile } from "@madsn/parser";
 import { readFileSync } from "fs";
 
 const source = readFileSync("config.msn", "utf-8");

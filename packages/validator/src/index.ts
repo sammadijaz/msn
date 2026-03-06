@@ -1,4 +1,4 @@
-import type { ValidationError } from "@msn/parser";
+import type { ValidationError } from "@madsn/parser";
 
 /**
  * Validate MSN source text and return an array of errors.
@@ -76,11 +76,7 @@ export function validate(source: string): ValidationError[] {
     const content = afterDashes.trimStart();
 
     // Check for key-value with missing space after colon
-    if (
-      content.includes(":") &&
-      !content.includes(": ") &&
-      !content.endsWith(":")
-    ) {
+    if (content.includes(":") && !content.includes(": ") && !content.endsWith(":")) {
       const colonIdx = content.indexOf(":");
       const afterColon = content.slice(colonIdx + 1);
       if (afterColon.length > 0 && afterColon[0] !== " ") {

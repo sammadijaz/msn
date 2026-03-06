@@ -1,5 +1,5 @@
 {
-  "name": "@msn/cli",
+  "name": "@madsn/cli",
   "version": "1.0.0",
   "description": "Command-line interface for Mad Sam Notation (MSN)",
   "main": "dist/index.js",
@@ -16,9 +16,9 @@
     "clean": "rimraf dist"
   },
   "dependencies": {
-    "@msn/parser": "^1.0.0",
-    "@msn/validator": "^1.0.0",
-    "@msn/formatter": "^1.0.0"
+    "@madsn/parser": "^1.0.0",
+    "@madsn/validator": "^1.0.0",
+    "@madsn/formatter": "^1.0.0"
   },
   "devDependencies": {
     "@types/node": "^20.11.0",

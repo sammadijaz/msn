@@ -3,7 +3,7 @@
 ## Installation
 
 ```bash
-npm install -g @msn/cli
+npm install -g @madsn/cli
 ```
 
 ## Commands

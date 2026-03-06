@@ -1,5 +1,5 @@
 {
-  "name": "@msn/parser",
+  "name": "@madsn/parser",
   "version": "1.0.0",
   "description": "Core parser, lexer, and compiler for Mad Sam Notation (MSN)",
   "main": "dist/index.js",

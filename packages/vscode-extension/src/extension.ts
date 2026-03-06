@@ -1,11 +1,10 @@
 import * as vscode from "vscode";
 
-// Inline parser implementations so the extension can work standalone without @msn/parser dependency
-// In production, these would come from @msn/parser and @msn/validator
+// Inline parser implementations so the extension can work standalone without @madsn/parser dependency
+// In production, these would come from @madsn/parser and @madsn/validator
 
 export function activate(context: vscode.ExtensionContext) {
-  const diagnosticCollection =
-    vscode.languages.createDiagnosticCollection("msn");
+  const diagnosticCollection = vscode.languages.createDiagnosticCollection("msn");
   context.subscriptions.push(diagnosticCollection);
 
   // Validate on open and save
@@ -14,16 +13,13 @@ export function activate(context: vscode.ExtensionContext) {
   if (config.get("validate.enable", true)) {
     context.subscriptions.push(
       vscode.workspace.onDidOpenTextDocument((doc) => {
-        if (doc.languageId === "msn")
-          validateDocument(doc, diagnosticCollection);
+        if (doc.languageId === "msn") validateDocument(doc, diagnosticCollection);
       }),
       vscode.workspace.onDidSaveTextDocument((doc) => {
-        if (doc.languageId === "msn")
-          validateDocument(doc, diagnosticCollection);
+        if (doc.languageId === "msn") validateDocument(doc, diagnosticCollection);
       }),
       vscode.workspace.onDidChangeTextDocument((e) => {
-        if (e.document.languageId === "msn")
-          validateDocument(e.document, diagnosticCollection);
+        if (e.document.languageId === "msn") validateDocument(e.document, diagnosticCollection);
       }),
     );
   }
@@ -32,9 +28,7 @@ export function activate(context: vscode.ExtensionContext) {
   if (config.get("format.enable", true)) {
     context.subscriptions.push(
       vscode.languages.registerDocumentFormattingEditProvider("msn", {
-        provideDocumentFormattingEdits(
-          document: vscode.TextDocument,
-        ): vscode.TextEdit[] {
+        provideDocumentFormattingEdits(document: vscode.TextDocument): vscode.TextEdit[] {
           const formatted = formatMsn(document.getText());
           const fullRange = new vscode.Range(
             document.positionAt(0),
@@ -115,9 +109,7 @@ export function activate(context: vscode.ExtensionContext) {
         const trimmed = line.trim();
 
         if (trimmed.startsWith("#")) {
-          return new vscode.Hover(
-            "**MSN Comment** — Ignored during compilation",
-          );
+          return new vscode.Hover("**MSN Comment** — Ignored during compilation");
         }
 
         const dashMatch = trimmed.match(/^(-+)\s/);
@@ -137,9 +129,7 @@ export function activate(context: vscode.ExtensionContext) {
           }
           if (content.includes(": ")) {
             const key = content.split(": ")[0];
-            return new vscode.Hover(
-              `**Key-Value** \`${key}\` at depth ${depth}`,
-            );
+            return new vscode.Hover(`**Key-Value** \`${key}\` at depth ${depth}`);
           }
           return new vscode.Hover(
             `**Container** \`${content}\` at depth ${depth}\n\nCreates a nested JSON object`,
@@ -247,13 +237,7 @@ function formatMsn(source: string): string {
   return formatted.join("\n") + "\n";
 }
 
-type JsonVal =
-  | string
-  | number
-  | boolean
-  | null
-  | JsonVal[]
-  | { [k: string]: JsonVal };
+type JsonVal = string | number | boolean | null | JsonVal[] | { [k: string]: JsonVal };
 
 function compileMsn(source: string): JsonVal {
   const lines = source.split(/\r?\n/);
@@ -282,8 +266,7 @@ function compileMsn(source: string): JsonVal {
     const commentIdx = content.indexOf(" #");
     if (commentIdx !== -1) content = content.slice(0, commentIdx).trim();
 
-    while (stack.length > 1 && stack[stack.length - 1].depth >= depth)
-      stack.pop();
+    while (stack.length > 1 && stack[stack.length - 1].depth >= depth) stack.pop();
     const parent = stack[stack.length - 1];
 
     if (content === "*") {
@@ -292,8 +275,7 @@ function compileMsn(source: string): JsonVal {
         parent.arr.push(entry);
       } else if (parent.key) {
         const arr = (parent.obj[parent.key] as JsonVal[] | undefined) ?? [];
-        if (!Array.isArray(parent.obj[parent.key]))
-          parent.obj[parent.key] = arr;
+        if (!Array.isArray(parent.obj[parent.key])) parent.obj[parent.key] = arr;
         (arr as JsonVal[]).push(entry);
       }
       stack.push({ obj: entry, depth, isArray: false });
@@ -324,10 +306,7 @@ function compileMsn(source: string): JsonVal {
 }
 
 function inferTypeVal(v: string): JsonVal {
-  if (
-    (v.startsWith('"') && v.endsWith('"')) ||
-    (v.startsWith("'") && v.endsWith("'"))
-  )
+  if ((v.startsWith('"') && v.endsWith('"')) || (v.startsWith("'") && v.endsWith("'")))
     return v.slice(1, -1);
   const lower = v.toLowerCase();
   if (lower === "true") return true;

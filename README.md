@@ -94,10 +94,10 @@ Complex   214 chars   418 chars   248 chars   396 chars   756 chars
 
 | Package | Description | |
 |---------|-------------|---|
-| [`@msn/parser`](packages/parser/) | Core lexer, parser, and compiler | **Required** |
-| [`@msn/cli`](packages/cli/) | Command-line interface | `msn compile`, `msn validate` |
-| [`@msn/validator`](packages/validator/) | Syntax and structure validation | Errors + warnings |
-| [`@msn/formatter`](packages/formatter/) | Auto-formatting for MSN files | Normalize whitespace |
+| [`@madsn/parser`](packages/parser/) | Core lexer, parser, and compiler | **Required** |
+| [`@madsn/cli`](packages/cli/) | Command-line interface | `msn compile`, `msn validate` |
+| [`@madsn/validator`](packages/validator/) | Syntax and structure validation | Errors + warnings |
+| [`@madsn/formatter`](packages/formatter/) | Auto-formatting for MSN files | Normalize whitespace |
 | [`msn-vscode`](packages/vscode-extension/) | VS Code extension | Syntax highlighting |
 
 ## Quick Start
@@ -105,13 +105,13 @@ Complex   214 chars   418 chars   248 chars   396 chars   756 chars
 ### Install the Parser
 
 ```bash
-npm install @msn/parser
+npm install @madsn/parser
 ```
 
 ### Use in Code
 
 ```typescript
-import { compile, compileToString } from "@msn/parser";
+import { compile, compileToString } from "@madsn/parser";
 
 // Parse to JavaScript object
 const config = compile(`
@@ -128,7 +128,7 @@ const json = compileToString(msnSource, 2);
 ### Install the CLI
 
 ```bash
-npm install -g @msn/cli
+npm install -g @madsn/cli
 ```
 
 ### CLI Commands

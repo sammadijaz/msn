@@ -1,13 +1,13 @@
 # API Reference
 
-## `@msn/parser`
+## `@madsn/parser`
 
 ### `compile(source: string): JsonValue`
 
 Compiles MSN source text to a JSON-compatible value.
 
 ```typescript
-import { compile } from "@msn/parser";
+import { compile } from "@madsn/parser";
 
 const result = compile("- name: hello");
 // { name: "hello" }
@@ -18,7 +18,7 @@ const result = compile("- name: hello");
 Compiles MSN source and returns a formatted JSON string.
 
 ```typescript
-import { compileToString } from "@msn/parser";
+import { compileToString } from "@madsn/parser";
 
 const json = compileToString("- name: hello", 2);
 // '{\n  "name": "hello"\n}'
@@ -29,7 +29,7 @@ const json = compileToString("- name: hello", 2);
 Tokenizes MSN source into a stream of tokens.
 
 ```typescript
-import { Lexer } from "@msn/parser";
+import { Lexer } from "@madsn/parser";
 
 const lexer = new Lexer("- name: hello");
 const tokens = lexer.tokenize();
@@ -40,7 +40,7 @@ const tokens = lexer.tokenize();
 Parses MSN source into an AST.
 
 ```typescript
-import { Parser } from "@msn/parser";
+import { Parser } from "@madsn/parser";
 
 const parser = new Parser();
 const ast = parser.parse("- name: hello");
@@ -51,7 +51,7 @@ const ast = parser.parse("- name: hello");
 Converts AST to JSON.
 
 ```typescript
-import { Compiler } from "@msn/parser";
+import { Compiler } from "@madsn/parser";
 
 const compiler = new Compiler();
 const json = compiler.compile("- name: hello");
@@ -63,7 +63,7 @@ const jsonString = compiler.compileToString("- name: hello", 2);
 Infers the JSON type from a string value.
 
 ```typescript
-import { inferType } from "@msn/parser";
+import { inferType } from "@madsn/parser";
 
 inferType("42"); // 42
 inferType("true"); // true
@@ -72,14 +72,14 @@ inferType("hello"); // "hello"
 inferType('"42"'); // "42"
 ```
 
-## `@msn/validator`
+## `@madsn/validator`
 
 ### `validate(source: string): ValidationError[]`
 
 Validates MSN syntax and returns an array of errors.
 
 ```typescript
-import { validate } from "@msn/validator";
+import { validate } from "@madsn/validator";
 
 const errors = validate("- name: hello");
 // []
@@ -93,14 +93,14 @@ Checks for indentation issues (warnings).
 
 Runs all validation checks.
 
-## `@msn/formatter`
+## `@madsn/formatter`
 
 ### `format(source: string, options?: FormatOptions): string`
 
 Formats MSN source text.
 
 ```typescript
-import { format } from "@msn/formatter";
+import { format } from "@madsn/formatter";
 
 const formatted = format("  -  name:  hello  ");
 // '- name: hello\n'

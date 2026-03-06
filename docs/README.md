@@ -11,13 +11,13 @@ MSN is a token-efficient hierarchical data language that compiles directly to JS
 ### Installation
 
 ```bash
-npm install @msn/parser
+npm install @madsn/parser
 ```
 
 ### Basic Usage
 
 ```typescript
-import { compile } from "@msn/parser";
+import { compile } from "@madsn/parser";
 
 const msn = `
 - name: My App
