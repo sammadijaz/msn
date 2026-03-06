@@ -1,0 +1,96 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "MSN",
+  "scopeName": "source.msn",
+  "patterns": [{ "include": "#comment" }, { "include": "#entry" }],
+  "repository": {
+    "comment": {
+      "patterns": [
+        {
+          "name": "comment.line.number-sign.msn",
+          "match": "#.*$"
+        }
+      ]
+    },
+    "entry": {
+      "patterns": [
+        {
+          "name": "meta.entry.msn",
+          "match": "^(-+)\\s+(\\*)\\s*$",
+          "captures": {
+            "1": { "name": "punctuation.definition.dash.msn" },
+            "2": { "name": "keyword.operator.array.msn" }
+          }
+        },
+        {
+          "name": "meta.array-item.msn",
+          "match": "^(-+)\\s+(\\*)\\s+(.+?)\\s*(#.*)?$",
+          "captures": {
+            "1": { "name": "punctuation.definition.dash.msn" },
+            "2": { "name": "keyword.operator.array.msn" },
+            "3": {
+              "patterns": [{ "include": "#value" }]
+            },
+            "4": { "name": "comment.line.number-sign.msn" }
+          }
+        },
+        {
+          "name": "meta.key-value.msn",
+          "match": "^(-+)\\s+([\\w][\\w\\-\\.]*?):\\s+(.+?)\\s*(#.*)?$",
+          "captures": {
+            "1": { "name": "punctuation.definition.dash.msn" },
+            "2": { "name": "entity.name.tag.key.msn" },
+            "3": {
+              "patterns": [{ "include": "#value" }]
+            },
+            "4": { "name": "comment.line.number-sign.msn" }
+          }
+        },
+        {
+          "name": "meta.container.msn",
+          "match": "^(-+)\\s+([\\w][\\w\\-\\.]*)\\s*(#.*)?$",
+          "captures": {
+            "1": { "name": "punctuation.definition.dash.msn" },
+            "2": { "name": "entity.name.section.container.msn" },
+            "3": { "name": "comment.line.number-sign.msn" }
+          }
+        }
+      ]
+    },
+    "value": {
+      "patterns": [
+        {
+          "name": "constant.numeric.msn",
+          "match": "\\b-?\\d+(\\.\\d+)?\\b"
+        },
+        {
+          "name": "constant.language.boolean.msn",
+          "match": "\\b(true|false)\\b"
+        },
+        {
+          "name": "constant.language.null.msn",
+          "match": "\\bnull\\b"
+        },
+        {
+          "name": "string.quoted.double.msn",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "name": "constant.character.escape.msn",
+              "match": "\\\\."
+            }
+          ]
+        },
+        {
+          "name": "keyword.operator.multiline.msn",
+          "match": "[|>]$"
+        },
+        {
+          "name": "string.unquoted.msn",
+          "match": ".+"
+        }
+      ]
+    }
+  }
+}
