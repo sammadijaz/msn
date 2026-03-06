@@ -3,7 +3,7 @@
   "displayName": "MSN - Mad Sam Notation",
   "description": "Language support for Mad Sam Notation (MSN) — syntax highlighting, validation, formatting, and more",
   "version": "1.0.2",
-  "publisher": "msn-lang",
+  "publisher": "SammadIjaz",
   "engines": {
     "vscode": "^1.85.0"
   },
