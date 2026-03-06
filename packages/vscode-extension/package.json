@@ -2,7 +2,7 @@
   "name": "msn-vscode",
   "displayName": "MSN - Mad Sam Notation",
   "description": "Language support for Mad Sam Notation (MSN) — syntax highlighting, validation, formatting, and more",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "publisher": "msn-lang",
   "engines": {
     "vscode": "^1.85.0"
@@ -91,7 +91,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/madsam/msn",
+    "url": "git+https://github.com/sammadijaz/msn.git",
     "directory": "packages/vscode-extension"
   }
 }

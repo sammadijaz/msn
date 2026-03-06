@@ -1,6 +1,6 @@
 {
   "name": "@madsn/formatter",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Auto-formatter for Mad Sam Notation (MSN) files",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -29,9 +29,10 @@
     "format"
   ],
   "license": "MIT",
+  "homepage": "https://msn.sammadijaz.me",
   "repository": {
     "type": "git",
-    "url": "https://github.com/madsam/msn",
+    "url": "git+https://github.com/sammadijaz/msn.git",
     "directory": "packages/formatter"
   }
 }

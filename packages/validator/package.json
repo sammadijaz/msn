@@ -1,6 +1,6 @@
 {
   "name": "@madsn/validator",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Syntax and structure validator for Mad Sam Notation (MSN)",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -32,9 +32,10 @@
     "lint"
   ],
   "license": "MIT",
+  "homepage": "https://msn.sammadijaz.me",
   "repository": {
     "type": "git",
-    "url": "https://github.com/madsam/msn",
+    "url": "git+https://github.com/sammadijaz/msn.git",
     "directory": "packages/validator"
   }
 }
